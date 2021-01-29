@@ -10,22 +10,23 @@ pub struct SomeGameServer {}
 
 #[tonic::async_trait]
 impl service::game_server::Game for SomeGameServer {
-    async fn set_position(&self, request: tonic::Request<service::Vector3d>) -> Result<tonic::Response<service::Vector3d>, tonic::Status> {
-        println!("hello from server");
-        Ok(Response::new(service::Vector3d{
-            x: 3.0,
-            y: 4.0,
-            z: 5.0
+    async fn increment(
+        &self,
+        request: tonic::Request<service::NumberValue>,
+    ) -> Result<tonic::Response<service::NumberValue>, tonic::Status> {
+        Ok(Response::new(service::NumberValue {
+            value: request.get_ref().value + 1,
         }))
     }
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let addr = "127.0.0.1:5001".parse().unwrap();
-
+    let addr = "0.0.0.0:5001".parse().unwrap();
     Server::builder()
-        .add_service(service::game_server::GameServer::new(SomeGameServer::default()))
+        .add_service(service::game_server::GameServer::new(
+            SomeGameServer::default(),
+        ))
         .serve(addr)
         .await?;
     Ok(())

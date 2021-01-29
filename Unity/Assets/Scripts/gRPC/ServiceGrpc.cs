@@ -42,14 +42,14 @@ namespace Grpc.Service {
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
-    static readonly grpc::Marshaller<global::Grpc.Service.Vector3d> __Marshaller_grpc_service_Vector3d = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Grpc.Service.Vector3d.Parser));
+    static readonly grpc::Marshaller<global::Grpc.Service.NumberValue> __Marshaller_grpc_service_NumberValue = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Grpc.Service.NumberValue.Parser));
 
-    static readonly grpc::Method<global::Grpc.Service.Vector3d, global::Grpc.Service.Vector3d> __Method_SetPosition = new grpc::Method<global::Grpc.Service.Vector3d, global::Grpc.Service.Vector3d>(
+    static readonly grpc::Method<global::Grpc.Service.NumberValue, global::Grpc.Service.NumberValue> __Method_Increment = new grpc::Method<global::Grpc.Service.NumberValue, global::Grpc.Service.NumberValue>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "SetPosition",
-        __Marshaller_grpc_service_Vector3d,
-        __Marshaller_grpc_service_Vector3d);
+        "Increment",
+        __Marshaller_grpc_service_NumberValue,
+        __Marshaller_grpc_service_NumberValue);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -61,7 +61,7 @@ namespace Grpc.Service {
     [grpc::BindServiceMethod(typeof(Game), "BindService")]
     public abstract partial class GameBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Grpc.Service.Vector3d> SetPosition(global::Grpc.Service.Vector3d request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Grpc.Service.NumberValue> Increment(global::Grpc.Service.NumberValue request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -91,21 +91,21 @@ namespace Grpc.Service {
       {
       }
 
-      public virtual global::Grpc.Service.Vector3d SetPosition(global::Grpc.Service.Vector3d request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Grpc.Service.NumberValue Increment(global::Grpc.Service.NumberValue request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return SetPosition(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Increment(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Grpc.Service.Vector3d SetPosition(global::Grpc.Service.Vector3d request, grpc::CallOptions options)
+      public virtual global::Grpc.Service.NumberValue Increment(global::Grpc.Service.NumberValue request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_SetPosition, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_Increment, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Grpc.Service.Vector3d> SetPositionAsync(global::Grpc.Service.Vector3d request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Grpc.Service.NumberValue> IncrementAsync(global::Grpc.Service.NumberValue request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return SetPositionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return IncrementAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Grpc.Service.Vector3d> SetPositionAsync(global::Grpc.Service.Vector3d request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Grpc.Service.NumberValue> IncrementAsync(global::Grpc.Service.NumberValue request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_SetPosition, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_Increment, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override GameClient NewInstance(ClientBaseConfiguration configuration)
@@ -119,7 +119,7 @@ namespace Grpc.Service {
     public static grpc::ServerServiceDefinition BindService(GameBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SetPosition, serviceImpl.SetPosition).Build();
+          .AddMethod(__Method_Increment, serviceImpl.Increment).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -128,7 +128,7 @@ namespace Grpc.Service {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, GameBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_SetPosition, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Grpc.Service.Vector3d, global::Grpc.Service.Vector3d>(serviceImpl.SetPosition));
+      serviceBinder.AddMethod(__Method_Increment, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Grpc.Service.NumberValue, global::Grpc.Service.NumberValue>(serviceImpl.Increment));
     }
 
   }
