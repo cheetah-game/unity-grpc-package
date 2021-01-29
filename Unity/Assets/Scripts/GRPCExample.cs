@@ -1,20 +1,31 @@
 using Grpc.Core;
 using Grpc.Service;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GRPCExample : MonoBehaviour
 {
+    [SerializeField] private Text text;
+
+    private NumberValue position = new NumberValue();
+    private Game.GameClient client;
+
+
     void Start()
     {
-        var channel = new Channel("127.0.0.1:5001", ChannelCredentials.Insecure);
-        var client = new Game.GameClient(channel);
-        var position = new Vector3d {X = 100, Y = 200, Z = 300};
-        var vector3d = client.SetPosition(position, Metadata.Empty);
-        Debug.Log("result " + vector3d.X + " " + vector3d.Y + " " + vector3d.Z);
+        position.Value = 0;
+        var channel = new Channel("192.168.212.97:5001", ChannelCredentials.Insecure);
+        client = new Game.GameClient(channel);
     }
 
 
-    void Update()
+    async void Update()
     {
+        position = client.Increment(position);
+        position = await client.IncrementAsync(position, new CallOptions());
+        if (!text.IsDestroyed())
+        {
+            text.text = position.Value.ToString();
+        }
     }
 }
