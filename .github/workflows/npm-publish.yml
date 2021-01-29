@@ -1,0 +1,19 @@
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:  
+    - uses: actions/checkout@v2  
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://npm.registry.cheetah.games'   
+    - run: sed -i.bak 's/999.999.999/${{ github.event.release.tag_name }}/' Unity/Packages/games.cheetah.unity.grpc/package.json
+    - run: npm publish Unity/Packages/games.cheetah.unity.grpc --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.TOKEN_REPOSITORY_CHEETAH_GAMES}}
