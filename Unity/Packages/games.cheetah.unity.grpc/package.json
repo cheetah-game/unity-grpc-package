@@ -1,0 +1,30 @@
+{
+  "name": "games.cheetah.unity.grpc",
+  "version": "999.999.999",
+  "displayName": "Cheetah gRPC",
+  "description": "Repacket grpc for unity",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "type": "library",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:cheetah-game/unity-grpc-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cheetah-game/unity-grpc-package/issues"
+  },
+  "keywords": [
+    "unity",
+    "unity3d",
+    "cheetah",
+    "library",
+    "grpc"
+  ],
+  "dependencies": {
+    "games.cheetah.unity.system-libraries": "1.2.5"
+  },
+  "author": "https://cheetah.games",
+  "hideInEditor": false
+}
+
+
